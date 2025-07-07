@@ -26,9 +26,9 @@ export default function CustomerList({
         {customers.map((c) => (
           <li
             key={c.id}
-            className="cursor-pointer underline text-blue-600"
+            className="cursor-pointer hover:text-blue-800 underline text-blue-600"
             onClick={() => onSelect(c.id, c.name)}
-          >
+        >
             {c.name} ({c.email})
           </li>
         ))}

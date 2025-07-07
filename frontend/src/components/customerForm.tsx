@@ -15,6 +15,18 @@ export default function CustomerForm({ onAdd }: { onAdd: () => void }) {
       return;
     }
 
+    // Simple email validation
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setError('Please enter a valid email.');
+      return;
+    }
+
+  // Basic phone validation (at least 6 digits)
+    if (!/^\d{6,}$/.test(phone.replace(/\D/g, ''))) {
+      setError('Please enter a valid phone number.');
+      return;
+    }
+
     try {
       await addCustomer({ name, email, phone });
       setName('');

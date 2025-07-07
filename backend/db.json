@@ -1,60 +1,26 @@
 {
   "customers": [
     {
-      "id": "55a59056-217f-4d10-bdba-cb6301cffcad",
-      "name": "y",
-      "email": "y",
-      "phone": "y"
-    },
-    {
-      "id": "3f0ca2b6-d3a6-49d4-ba93-28429032df0f",
-      "name": "y",
-      "email": "y",
-      "phone": "y"
-    },
-    {
-      "id": "9b4d4fa5-e34e-4dd3-9444-110e871ef1e8",
+      "id": "256bbffd-fce1-475b-9732-786d3c6ec8ff",
       "name": "Sabina",
-      "email": "sabina_hello@gmail.com",
-      "phone": "018234567"
-    },
-    {
-      "id": "95c334ed-b465-46fe-a518-419a5f964525",
-      "name": "test",
-      "email": "test",
-      "phone": "test"
-    },
-    {
-      "id": "6ac722c7-9f8e-4cdd-abbd-c1ec08b6c410",
-      "name": "i",
-      "email": "i",
-      "phone": "i"
+      "email": "sabina@gm.com",
+      "phone": "012876653"
     }
   ],
   "orders": [
     {
-      "id": "c56e8059-0530-4399-a6a4-43e99e6e5fe8",
-      "customer_id": "9b4d4fa5-e34e-4dd3-9444-110e871ef1e8",
+      "id": "f14580d0-c26f-4727-a50f-302be9e8545e",
+      "customer_id": "256bbffd-fce1-475b-9732-786d3c6ec8ff",
       "items": [
-        "yes"
+        {
+          "name": "Kopi O",
+          "price": "2.10",
+          "quantity": "2",
+          "product_id": "lqe94h5"
+        }
       ],
-      "total_price": 2
-    },
-    {
-      "id": "49da6543-45a8-406b-976d-e10f1df82178",
-      "customer_id": "9b4d4fa5-e34e-4dd3-9444-110e871ef1e8",
-      "items": [
-        "teh es"
-      ],
-      "total_price": 1
-    },
-    {
-      "id": "acbfffc5-e565-4e1c-bfa2-51407ae61cf1",
-      "customer_id": "6ac722c7-9f8e-4cdd-abbd-c1ec08b6c410",
-      "items": [
-        "i"
-      ],
-      "total_price": 9
+      "total_price": 4.2,
+      "created_at": "2025-07-07T10:04:28.598Z"
     }
   ]
 }

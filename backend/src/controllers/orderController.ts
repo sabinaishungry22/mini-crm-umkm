@@ -2,13 +2,53 @@ import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { readDB, writeDB } from "../models/db";
 
+interface Order {
+  id: string;
+  customer_id: string;
+  items: OrderItem[];
+  total_price: number;
+  created_at?: string;
+}
+
+interface OrderItem {
+  product_id: string;
+  name: string;
+  quantity: number;
+  price: number;
+}
+
 export const addOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const { customer_id, items, total_price } = req.body;
 
-    // Validate input
+    // Basic validation
     if (!customer_id || !Array.isArray(items) || typeof total_price !== "number") {
       res.status(400).json({ message: "Invalid input: customer_id, items[], and total_price are required." });
+      return;
+    }
+
+    // Item validation
+    for (const item of items) {
+      if (!item.product_id || !item.name || !item.quantity || !item.price) {
+        res.status(400).json({ 
+          message: "Each item must have product_id, name, quantity, and price" 
+        });
+        return;
+      }
+    }
+
+    // Verify total price
+    const calculatedTotal = items.reduce(
+      (sum, item) => sum + (item.price * item.quantity),
+      0
+    );
+
+    if (Math.abs(calculatedTotal - total_price) > 0.01) {
+      res.status(400).json({
+        message: "Total price doesn't match items sum",
+        expected: calculatedTotal,
+        received: total_price
+      });
       return;
     }
 
@@ -21,7 +61,14 @@ export const addOrder = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const newOrder = { id: uuidv4(), customer_id, items, total_price };
+    const newOrder: Order = { 
+      id: uuidv4(), 
+      customer_id, 
+      items, 
+      total_price,
+      created_at: new Date().toISOString() 
+    };
+
     db.orders.push(newOrder);
     await writeDB(db);
 
